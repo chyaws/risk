@@ -1,0 +1,36 @@
+{
+    "recordId": "api_1758633382599_eff7",
+    "created": 1758633383,
+    "model": "jiutian-lan",
+    "id": "59d8e6fb-7225-49eb-888b-c09b8a86affc",
+    "choices": [
+        {
+            "delta": {
+                "index": 0,
+                "text": "网",
+                "type": "text",
+                "status": "init"
+            }
+        }
+    ],
+    "object": "chat.completion.chunk"
+}
+
+
+text = line.decode('utf-8')
+                    # 解析JSON数据
+                    data = json.loads(text[5:])
+                    # 检查是否存在choices.delta.text路径
+                    if 'choices' in data and len(data['choices']) > 0:
+                        choice = data['choices'][0]
+                        if 'delta' in choice and 'text' in choice['delta']:
+                            # 获取当前片段的文本
+                            current_text = choice['delta']['text']
+                            # 流式打印文本，不换行
+                            print(current_text, end='', flush=True)
+                            # 将内容添加到结果列表
+                            result.append(current_text)
+            # 打印换行符，使输出更美观
+            print()
+            # 返回完整的生成文本
+            return ''.join(result)

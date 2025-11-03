@@ -1,0 +1,337 @@
+/* 通用基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 现代字体系统 - 优化中文字体显示 */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.02) 0%, rgba(14, 165, 233, 0) 90%),
+        radial-gradient(circle at 90% 80%, rgba(251, 146, 60, 0.02) 0%, rgba(251, 146, 60, 0) 90%);
+    background-attachment: fixed;
+}
+
+.container {
+    width: 100%;
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 24px 16px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* 顶部容器 */
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* 左 中 右 三块 */
+    align-items: center;                /* 垂直居中 */
+    padding: 6px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+/* 左侧 logo + 标题 */
+.top-left-section {
+    justify-self: start;
+    display: flex;
+    align-items: center;   /* 垂直居中 logo 和标题 */
+    gap: 10px;
+}
+
+.logo {
+    width: auto;
+    height: 28px;
+    vertical-align: middle; /* 图片和文字基线对齐 */
+}
+
+.title {
+    text-align: left;
+    color: #0F172A;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 中间导航 */
+.nav-links {
+    justify-self: center;
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    background-color: #F1F5F9;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    
+}
+
+.nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: #64748B;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    font-size: 13px;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-link:hover {
+    background-color: #E2E8F0;
+    color: #334155;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link.active {
+    background-color: #3B82F6;
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    border-color: #3B82F6;
+}
+
+.nav-link.active:hover {
+    background-color: #2563EB;
+    transform: translateY(-1px);
+}
+
+.nav-link.active:hover {
+    background-color: #258CD1;
+}
+
+/* 右边智能助手按钮 */
+.top-right-section {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    padding: 0;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    overflow: hidden;
+}
+
+.user-menu-btn span {
+    display: none;
+}
+
+/* 用户菜单容器 */
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 下拉菜单样式 */
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 下拉菜单样式 */
+.user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px; /* 减小间距，避免鼠标经过间隙时菜单消失 */
+    min-width: 180px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    z-index: 1000;
+    padding: 8px 0;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 下拉菜单悬停效果 */
+.user-dropdown-menu:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* 下拉菜单项 */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    color: #334155;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 菜单项悬停效果 */
+.dropdown-item:hover {
+    background-color: #f1f5f9;
+    color: #1e40af;
+    padding-left: 20px;
+    padding-right: 12px;
+    border-left-color: #3b82f6;
+    transform: translateX(4px);
+}
+
+/* 菜单项悬停时的背景动效 */
+.dropdown-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+
+.dropdown-item:hover::after {
+    left: 100%;
+}
+
+.dropdown-item i {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover i {
+    color: #1e40af;
+    transform: scale(1.1);
+}
+
+/* 鼠标接触头像时显示下拉菜单 */
+.user-menu-container:hover .user-dropdown-menu {
+    display: block;
+    animation: fadeInDown 0.3s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 添加菜单和容器的过渡效果 */
+.user-dropdown-menu {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 保持菜单项在容器内 */
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px; /* 增加底部padding，便于鼠标从头像移动到菜单 */
+}
+
+/* 确保下拉菜单在悬停时保持可见 */
+.user-dropdown-menu:hover {
+    display: block !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 下拉菜单动画 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-menu-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.user-menu-btn i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.user-menu-btn:hover i {
+    transform: rotate(10deg);
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 滚动时的导航栏效果 */
+.header-container.scrolled {
+    padding: 12px 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 加载动画 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

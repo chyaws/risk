@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐患详情</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            background-color: transparent;
+        }
+        
+        .risk-detail-container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .risk-detail-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+        
+        .risk-detail-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .close-button:hover {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        
+        .risk-detail-body {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px);
+        }
+        
+        .risk-data-container {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .risk-data-container table {
+            width: auto;
+            min-width: 100%;
+            table-layout: auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .risk-data-container th,
+        .risk-data-container td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        .risk-data-container th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+            white-space: normal;
+        }
+        
+        .risk-data-container tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .risk-data-container tr:hover {
+            background-color: #f1f3f4;
+        }
+        
+        .risk-data-container p {
+            margin: 10px 0;
+            color: #666;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .loading-indicator {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="risk-detail-container">
+        <div class="risk-detail-header">
+            <h3>隐患详情</h3>
+            <button class="close-button" onclick="window.parent.closeRiskDetailModal()">&times;</button>
+        </div>
+        <div class="risk-detail-body">
+            <div id="riskDataContainer" class="risk-data-container">
+                <div class="loading-indicator">加载中...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 等待父窗口传递数据
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'riskData') {
+                const data = event.data.payload;
+                renderRiskData(data);
+            }
+        });
+
+        // 渲染隐患数据
+        function renderRiskData(data) {
+            const container = document.getElementById('riskDataContainer');
+            
+            if (data && data.length > 0) {
+                // 如果返回的是数组且有数据，创建转置表格展示
+                let html = '<table>';
+                
+                // 获取所有可能的列名
+                const columns = Object.keys(data[0]);
+                
+                html += '<tbody>';
+                
+                // 转置表格：每一行显示一个字段名及其在所有数据项中的值
+                columns.forEach(col => {
+                    html += '<tr>';
+                    html += `<th>${col}</th>`; // 第一列是字段名
+                    
+                    // 后续列是每个数据项的该字段值
+                    data.forEach(row => {
+                        html += `<td>${row[col] !== undefined ? row[col] : ''}</td>`;
+                    });
+                    
+                    html += '</tr>';
+                });
+                
+                html += '</tbody></table>';
+                container.innerHTML = html;
+            } else if (data && typeof data === 'object') {
+                // 如果返回的是单个对象，保持现有的键值对显示方式
+                // 这种情况下已经是转置形式（每行一个字段），无需更改
+                let html = '<table>';
+                html += '<tbody>';
+                
+                Object.entries(data).forEach(([key, value]) => {
+                    html += `<tr>
+                                <th>${key}</th>
+                                <td>${value !== undefined ? value : ''}</td>
+                            </tr>`;
+                });
+                
+                html += '</tbody></table>';
+                container.innerHTML = html;
+            } else {
+                // 如果没有数据
+                container.innerHTML = '<p>没有找到相关隐患详情数据</p>';
+            }
+        }
+    </script>
+</body>
+</html>

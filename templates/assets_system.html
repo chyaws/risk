@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳综合调度及维护中心资产与隐患系统</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/assets_system.css">
+    <link rel="stylesheet" href="/static/fonts/Font-Awesome-4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <!-- 新增：页面头部容器 -->
+    <div class="header-container">
+        <div class="top-left-section">
+            <div class="logo-container">
+                <img src="/static/assets/copr01-tpr.png" alt="Logo" class="logo">
+            </div>
+            <h1 class="title">深圳综合调度及维护中心资产及隐患系统</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/index" class="nav-link">全景监控</a>
+            <a href="/risks_table" class="nav-link">标准隐患</a>
+            <a href="/assets_system" class="nav-link active">资产信息</a>
+            <a href="/import_risks" class="nav-link">AI隐患录入</a>
+            <a href="/ai_report" class="nav-link">AI隐患报告</a>
+        </div>
+        <!-- 右侧预留位置，可以放头像/按钮 -->
+        <div class="top-right-section">
+            <div class="user-menu-container">
+                <button class="user-menu-btn">
+                    <i class="fa fa-user-circle"></i>
+                    <span>用户菜单</span>
+                </button>
+                <div class="user-dropdown-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-user-circle"></i>用户中心
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-cog"></i>系统设置
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-question-circle"></i>帮助中心
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-sign-out"></i>退出登录
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- 搜索表单 -->
+        <div class="search-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="department">所属专业</label>
+                    <select id="department" placeholder="请选择所属专业室">
+                        <option value="">全部</option>
+                        <option value="核心网">核心网</option>
+                        <option value="传输">传输</option>
+                        <option value="动环">动环</option>
+                        <option value="承载">承载</option>
+                        <option value="网络云">网络云</option>
+                        <option value="内容网">内容网</option>
+                        <option value="网管系统">网管系统</option>
+                        <option value="网络安全">网络安全</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="asset_name">资产名称</label>
+                    <input type="text" id="asset_name" placeholder="请输入资产名称">
+                </div>
+                <div class="form-group">
+                    <label for="device_type">设备类型</label>
+                    <input type="text" id="device_type" placeholder="请输入设备类型">
+                </div>
+                <div class="form-group">
+                    <label for="belong_room">所属机房</label>
+                    <input type="text" id="belong_room" placeholder="请输入所属机房">
+                </div>
+                <div class="form-group search-button-container">
+                    <button id="searchButton" class="search-button">搜索</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 资产信息表格 -->
+        <div class="table-container">
+            <table class="hazard-table">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>专业</th>
+                        <th>资产名</th>
+                        <th>设备类型</th>
+                        <th>所属机房</th>
+                        <th>关联隐患数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页控件 -->
+        <div class="pagination" style="display:flex; align-items:center; justify-content: space-between; margin-top: 10px;">
+            <div class="page-size" style="display:flex; align-items:center; gap:6px;">
+                <span>每页</span>
+                <select id="pageSizeSelect">
+                    <option value="10">10</option>
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                </select>
+                <span>条</span>
+            </div>
+            <div class="page-controls" style="display:flex; align-items:center; gap:10px;">
+                <button id="prevPageBtn">上一页</button>
+                <span id="pageInfo">第 1 页</span>
+                <button id="nextPageBtn">下一页</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/scripts/asset.js?v=2"></script>
+    <script src="/static/scripts/navigation_ui.js"></script>
+</body>
+</html>

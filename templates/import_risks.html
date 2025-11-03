@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳综合调度及维护中心资产与隐患系统</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/import_risks.css">
+    <link rel="stylesheet" href="/static/fonts/Font-Awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/static/scripts/category_combo.js"></script>
+    <script src="/static/scripts/ai_analysis.js"></script>
+    
+</head>
+<body>
+    <div class="header-container">
+        <div class="top-left-section">
+            <div class="logo-container">
+                <img src="/static/assets/copr01-tpr.png" alt="Logo" class="logo">
+            </div>
+            <h1 class="title">深圳综合调度及维护中心资产及隐患系统</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/index" class="nav-link">全景监控</a>
+            <a href="/risks_table" class="nav-link">标准隐患</a>
+            <a href="/assets_system" class="nav-link">资产信息</a>
+            <a href="/import_risks" class="nav-link active">AI隐患录入</a>
+            <a href="/ai_report" class="nav-link">AI隐患报告</a>
+        </div>
+        <!-- 右侧预留位置，可以放头像/按钮 -->
+        <div class="top-right-section">
+            <div class="user-menu-container">
+                <button class="user-menu-btn">
+                    <i class="fa fa-user-circle"></i>
+                    <span>用户菜单</span>
+                </button>
+                <div class="user-dropdown-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-user-circle"></i>用户中心
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-cog"></i>系统设置
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-question-circle"></i>帮助中心
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-sign-out"></i>退出登录
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+
+        
+        <!-- 添加新的AI分析表单区域 -->
+        <div class="ai-analysis-form">
+            <div class="form-group">
+                <label for="inputText">目前遇到了哪些隐患情况？</label>
+                <textarea id="inputText" placeholder="告诉我一下..." rows="4"></textarea>
+                <button id="aiAnalyzeButton" class="ai-button">大模型AI分析</button>
+                <!-- 新增输入框，风格与inputText一致 -->
+                <textarea id="newInputBox" rows="4"></textarea>
+            </div>
+            
+            <!-- 将两个下拉框和两个输入框合并到同一行 -->
+            <div class="form-row full-width-row">
+                <div class="form-group">
+                    <label for="department">专业</label>
+                    <select id="department" placeholder="请选择所属专业">
+                        <option value="">全部</option>
+                        <option value="核心网">核心网</option>
+                        <option value="传输">传输</option>
+                        <option value="动环">动环</option>
+                        <option value="承载">承载</option>
+                        <option value="网络云">网络云</option>
+                        <option value="内容网">内容网</option>
+                        <option value="网管系统">网管系统</option>
+                        <option value="网络安全">网络安全</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="primaryCategory">分类</label>
+                    <select id="primaryCategory" placeholder="请选择分类">
+                        <option value="">全部</option>
+                        <option value="网元类">网元类</option>
+                        <option value="组网类">组网类</option>
+                        <option value="业务系统类">业务系统类</option>
+                        <option value="动环设施类">动环设施类</option>
+                        <option value="安全类">安全类</option>
+                        <option value="IT系统类">IT系统类</option>
+                        <option value="其它类">其它类</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="secondaryCategory">详细分类</label>
+                    <select id="secondaryCategory" placeholder="请选择详细分类">
+                        <option value="">全部</option>
+                        <!-- 可以根据需要添加具体的详细分类选项 -->
+                        <!-- 例如：<option value="分类1">分类1</option> -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="riskLevel">隐患级别</label>
+                    <select id="riskLevel" placeholder="请选择隐患级别">
+                        <option value="">全部</option>
+                        <option value="关键">关键</option>
+                        <option value="一般">一般</option>
+                        <option value="轻微">轻微</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 隐患标题单独一行 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="analysisResult">隐患标题</label>
+                    <textarea id="analysisResult" placeholder="AI分析结果将显示在这里..." rows="1"></textarea>
+                </div>
+            </div>
+            
+            <!-- 隐患标题描述单独一行 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="suggestions">隐患标题描述</label>
+                    <textarea id="suggestions" placeholder="AI分析结果将显示在这里..." rows="1"></textarea>
+                </div>
+            </div>
+            <!-- 添加录入按钮，使用独立样式 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <button id="recordButton" class="record-button">录入</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 隐患导入表单 -->
+        <div class="search-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="department">选择专业室</label>
+                    <select id="department" placeholder="请选择专业室" required>
+                        <option value="">--请选择专业室--</option> <!-- 默认空选项，提示用户选择 -->
+                        <option value="传输网络优化室">传输网络优化室</option>
+                        <option value="空间与动力维护室">空间与动力维护室</option>
+                        <option value="综合管理室">综合管理室</option>
+                        <option value="基础网络维护室">基础网络维护室</option>
+                        <option value="传输网络维护室">传输网络维护室</option>
+                    </select>
+                </div>
+                 <!-- 新增文件上传输入框 -->
+        <div class="form-group">
+            <label for="excelFile">选择Excel文件</label>
+            <input type="file" id="excelFile" accept=".xlsx, .xls" class="file-input">
+        </div>
+        <div class="form-group search-button-container">
+            <button id="uploadButton" class="search-button">上传隐患文件</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/scripts/navigation_ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳综合调度及维护中心资产及隐患系统</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/Font-Awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- 新增：页面头部容器 -->
+    <div class="header-container">
+        <div class="top-left-section">
+            <div class="logo-container">
+                <img src="/static/assets/copr01-tpr.png" alt="Logo" class="logo">
+            </div>
+            <h1 class="title">深圳综合调度及维护中心资产及隐患系统</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/index" class="nav-link active">全景监控</a>
+            <a href="/risks_table" class="nav-link">标准隐患</a>
+            <a href="/assets_system" class="nav-link">资产信息</a>
+            <a href="/import_risks" class="nav-link">AI隐患录入</a>
+            <a href="/ai_report" class="nav-link">AI隐患报告</a>
+        </div>
+        <!-- 右侧预留位置，可以放头像/按钮 -->
+        <div class="top-right-section">
+            <div class="user-menu-container">
+                <button class="user-menu-btn">
+                    <i class="fa fa-user-circle"></i>
+                    <span>用户菜单</span>
+                </button>
+                <div class="user-dropdown-menu">
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-user-circle"></i>用户中心
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-cog"></i>系统设置
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-question-circle"></i>帮助中心
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-sign-out"></i>退出登录
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- 第一行布局 -->
+        <div class="row">
+            <div class="chart-container large-chart">
+                <h3 class="progress-title"><i class="fa fa-pie-chart"></i>整体隐患整治进度</h3>
+                <div id="progressChart"></div>
+            </div>
+            <div class="data-container-vertical">
+                <div class="data-item">
+                    <h3><i class="fa fa-spinner"></i>整治中</h3>
+                    <div class="data-value" id="inProgress">0</div>
+                    <div class="data-trend trend-up">
+                        <i class="fa fa-arrow-up"></i>较昨日 +12%
+                    </div>
+                </div>
+                <div class="data-item">
+                    <h3><i class="fa fa-pause"></i>暂停中</h3>
+                    <div class="data-value" id="paused">0</div>
+                    <div class="data-trend trend-flat">
+                        <i class="fa fa-minus"></i>较昨日 持平
+                    </div>
+                </div>
+                <div class="data-item">
+                    <h3><i class="fa fa-check-circle"></i>已完成</h3>
+                    <div class="data-value" id="completed">0</div>
+                    <div class="data-trend trend-up">
+                        <i class="fa fa-arrow-up"></i>较昨日 +8%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二行 -->
+        <div class="row split-row">
+            <div class="left-col">
+                <div class="chart-container">
+                    <h3><i class="fa fa-exclamation-triangle"></i>专业隐患统计</h3>
+                    <div id="departmentHazardChart"></div>
+                </div>
+            </div>
+            <div class="right-col">
+                <div class="chart-container">
+                    <h3><i class="fa fa-tags"></i>一级分类（TOP 3）</h3>
+                    <div id="primaryCategoryChart"></div>
+                </div>
+                <div class="chart-container">
+                    <h3><i class="fa fa-tags"></i>二级分类（TOP 5）</h3>
+                    <div id="secondaryCategoryChart"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三行 -->
+        <div class="row">
+            <div class="chart-container">
+                <h3><i class="fa fa-building"></i>专业室资产统计</h3>
+                <div id="departmentAssetChart"></div>
+            </div>
+        </div>
+        
+        <!-- 第四行 -->
+        <div class="row four-cards">
+            <div class="chart-container">
+                <h3><i class="fa fa-bolt"></i>传输网络优化室</h3>
+                <div id="powerRoomChart"></div>
+            </div>
+            <div class="chart-container">
+                <h3><i class="fa fa-cogs"></i>空间与动力维护室</h3>
+                <div id="transmissionRoomChart"></div>
+            </div>
+            <div class="chart-container">
+                <h3><i class="fa fa-wrench"></i>基础网络维护室</h3>
+                <div id="maintenanceRoomChart"></div>
+            </div>
+            <div class="chart-container">
+                <h3><i class="fa fa-sitemap"></i>传输网络维护室</h3>
+                <div id="baseRoomChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 图表初始化脚本，放在页面最后 -->
+    <script src="/static/libs/echarts-master/dist/echarts.js"></script>
+    <script src="/static/scripts/index_charts.js"></script>
+    <script src="/static/scripts/navigation_ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+/* 自定义颜色变量 - 现代化调色板 */
+:root {
+    --primary: #3B82F6;
+    --primary-light: #93C5FD;
+    --primary-dark: #2563EB;
+    --secondary: #0EA5E9;
+    --tertiary: #10B981;
+    --warning: #F59E0B;
+    --success: #22C55E;
+    --danger: #EF4444;
+    --danger-light: #FCA5A5;
+    --neutral: #64748B;
+    --neutral-light: #F1F5F9;
+    --neutral-dark: #334155;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --card-shadow-hover: 0 10px 25px rgba(59, 130, 246, 0.1);
+    --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    --gradient-warning: linear-gradient(135deg, #F59E0B 0%, #F97316 100%);
+    --gradient-success: linear-gradient(135deg, #10B981 0%, #22C55E 100%);
+    --border-radius: 12px;
+    --border-radius-small: 8px;
+    --scale: 0.9;
+}
+
+/* 图表和数据展示特有样式 - 现代化增强版 */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: calc(24px * var(--scale));
+    gap: calc(20px * var(--scale));
+}
+
+.chart-container {
+    flex: 1;
+    min-width: calc(30% - 20px);
+    min-height: calc(320px * var(--scale));
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: calc(24px * var(--scale));
+    box-sizing: border-box;
+    margin-bottom: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+/* 卡片装饰元素 - 左上角彩色装饰条 */
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* 四个卡片布局的特殊样式 */
+.row.four-cards .chart-container {
+    min-width: calc(25% - 20px);
+}
+
+/* 卡片悬停效果 - 增强版 */
+.chart-container:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.chart-container:hover::before {
+    opacity: 1;
+}
+
+/* 大图表样式优化 */
+.large-chart {
+    flex: 0 0 calc(75% - 10px);
+    height: calc(380px * var(--scale));
+    border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.data-container {
+    flex: 1;
+    min-width: calc(25% - 20px);
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 24px;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+/* 垂直数据容器优化 */
+.data-container-vertical {
+    flex: 0 0 calc(25% - 10px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: calc(380px * var(--scale));
+}
+
+.data-item {
+    flex: 1;
+    background-color: white;
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--card-shadow);
+    padding: calc(16px * var(--scale));
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+/* 数据项装饰元素 - 渐变边框 */
+.data-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.data-item:nth-child(1)::before {
+    background: var(--gradient-primary);
+}
+
+.data-item:nth-child(2)::before {
+    background: var(--gradient-warning);
+}
+
+.data-item:nth-child(3)::before {
+    background: var(--gradient-success);
+}
+
+/* 标题样式优化 - 现代化设计 */
+.chart-container h3,
+.data-container h3,
+.data-item h3 {
+    margin-top: 0;
+    margin-bottom: calc(16px * var(--scale));
+    color: var(--neutral-dark);
+    font-size: calc(16px * var(--scale));
+    font-weight: 600;
+    border-bottom: 1px solid #F1F5F9;
+    padding-bottom: calc(12px * var(--scale));
+    text-align: left;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.01em;
+}
+
+/* 整治中、暂停中、已完成标题样式 */
+.data-container-vertical .data-item h3 {
+    font-size: calc(14px * var(--scale));
+    font-weight: 500;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: calc(12px * var(--scale));
+}
+
+/* 标题图标 - 增强版 */
+.chart-container h3 i,
+.data-item h3 i {
+    margin-right: calc(8px * var(--scale));
+    font-size: calc(16px * var(--scale));
+    width: calc(20px * var(--scale));
+    height: calc(20px * var(--scale));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+}
+
+/* 整体隐患整治进度标题特殊样式 */
+.progress-title {
+    font-size: calc(20px * var(--scale)) !important;
+    font-weight: 700 !important;
+    color: var(--neutral-dark) !important;
+}
+
+.progress-title i {
+    font-size: calc(20px * var(--scale)) !important;
+    width: calc(24px * var(--scale)) !important;
+    height: calc(24px * var(--scale)) !important;
+    margin-right: calc(12px * var(--scale)) !important;
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: var(--primary) !important;
+}
+
+/* 不同状态的标题图标颜色 */
+.data-item:nth-child(1) h3 i {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: var(--primary) !important;
+}
+
+.data-item:nth-child(2) h3 i {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: var(--warning) !important;
+}
+
+.data-item:nth-child(3) h3 i {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    color: var(--tertiary) !important;
+}
+
+/* 数据值样式优化 - 动态效果 */
+.data-value {
+    font-size: calc(24px * var(--scale));
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.6s ease-out;
+    letter-spacing: -0.02em;
+}
+
+/* 整治中、暂停中、已完成数值增大字体 */
+#inProgress,
+#paused,
+#completed {
+    font-size: calc(32px * var(--scale));
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+/* 不同状态的数据值颜色 - 渐变色效果 */
+#inProgress {
+    color: var(--primary);
+    text-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+}
+
+#paused {
+    color: var(--warning);
+    text-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
+}
+
+#completed {
+    color: var(--tertiary);
+    text-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+}
+
+/* 数据趋势指标 - 增强版 */
+.data-trend {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral);
+    font-weight: 500;
+    padding: 4px 8px;
+    background-color: #F8FAFC;
+    border-radius: 12px;
+    border: 1px solid #F1F5F9;
+    transition: all 0.3s ease;
+}
+
+.data-trend:hover {
+    background-color: #F1F5F9;
+}
+
+.data-trend i {
+    margin-right: 4px;
+    font-size: 10px;
+}
+
+.trend-up i {
+    color: var(--danger);
+}
+
+.trend-down i {
+    color: var(--tertiary);
+}
+
+.trend-flat i {
+    color: var(--primary);
+}
+
+/* 图表容器样式 - 智能交互 */
+#progressChart,
+#primaryCategoryChart,
+#secondaryCategoryChart,
+#departmentAssetChart,
+#departmentHazardChart,
+#powerRoomChart,
+#transmissionRoomChart,
+#maintenanceRoomChart,
+#baseRoomChart {
+    width: 100%;
+    height: calc(100% - 60px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 图表容器悬停效果 */
+.chart-container:hover #progressChart,
+.chart-container:hover #primaryCategoryChart,
+.chart-container:hover #secondaryCategoryChart,
+.chart-container:hover #departmentAssetChart,
+.chart-container:hover #departmentHazardChart,
+.chart-container:hover #powerRoomChart,
+.chart-container:hover #transmissionRoomChart,
+.chart-container:hover #maintenanceRoomChart,
+.chart-container:hover #baseRoomChart {
+    transform: scale(1.01);
+}
+
+/* 图表加载动画 - 增强版 */
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+        transform: scale(0.98);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(0.98);
+    }
+}
+
+.chart-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: var(--neutral);
+    animation: pulse 1.5s infinite;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chart-loading::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid #E2E8F0;
+    border-top: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 淡入上移动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式调整 - 智能布局 */
+@media (max-width: 1200px) {
+    .row.four-cards .chart-container {
+        min-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .chart-container {
+        min-width: calc(33.333% - 15px);
+    }
+
+    .large-chart,
+    .data-container-vertical {
+        min-width: calc(100% - 15px);
+    }
+
+    .container {
+        padding: 16px 12px;
+    }
+
+    .header-container {
+        grid-template-columns: 1fr;
+        grid-gap: 16px;
+        text-align: center;
+    }
+
+    .top-left-section,
+    .nav-links,
+    .top-right-section {
+        justify-self: center;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        min-width: calc(100% - 10px);
+        min-height: 280px;
+        padding: 16px;
+    }
+
+    .row {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .data-value {
+        font-size: 22px;
+    }
+
+    #inProgress,
+    #paused,
+    #completed {
+        font-size: 28px;
+    }
+
+    .chart-container h3,
+    .data-container h3,
+    .data-item h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .logo {
+        width: 48px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px 8px;
+    }
+
+    .chart-container {
+        min-height: 250px;
+        padding: 12px;
+    }
+
+    .header-container {
+        padding: 12px 16px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 40px;
+    }
+}
+
+/* 专业隐患统计表样式（强化版） */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.data-table thead th {
+    background: #F8FAFC;
+    color: #334155;
+    font-weight: 600;
+}
+
+.data-table tbody tr {
+    transition: background-color .15s ease;
+}
+
+.data-table tbody tr:nth-child(odd) {
+    background-color: #FCFDFF;
+}
+
+
+
+/* 顶部区域与表格的间距协调 */
+#departmentHazardChart {
+    margin-top: calc(8px * var(--scale));
+}
+
+.data-table tbody tr:hover {
+    background-color: #F8FAFF;
+}
+
+/* 前三行轻量高亮（不影响居中） */
+.data-table tbody tr.top-row {
+    background-color: rgba(157, 190, 241, 0.164);
+}
+
+/* Top 3 字体颜色与排行一致（专业室 + 隐患数，柔和版） */
+.hazard-table .dept-chip.rank-1,
+.hazard-table .value-cell.rank-1 { color: #DC2626; } /* 深红，提升可读性 */
+.hazard-table .dept-chip.rank-2,
+.hazard-table .value-cell.rank-2 { color: #8B5E34; } /* 铜色更耐看 */
+.hazard-table .dept-chip.rank-3,
+.hazard-table .value-cell.rank-3 { color: #B8860B; } /* 暗金色，避免过亮 */
+
+/* 移除多余网格线，仅保留行底线 */
+.data-table tbody td {
+    border-bottom: 1px solid #f1f5f94b;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+
+
+/* 表头字体与内边距更紧凑 */
+.data-table thead th {
+    font-size: calc(12px * var(--scale));
+    padding: calc(8px * var(--scale)) calc(10px * var(--scale));
+}
+
+/* 内容区字体更紧凑 */
+.data-table tbody td {
+    font-size: calc(12px * var(--scale));
+}
+
+/* 行高更紧凑，保持等高 */
+.data-table tbody tr {
+    height: calc(30px * var(--scale));
+}
+
+/* 徽章更小巧 */
+.rank-badge {
+    min-width: calc(24px * var(--scale));
+    height: calc(20px * var(--scale));
+    padding: 0 calc(6px * var(--scale));
+    border-radius: calc(12px * var(--scale));
+    font-size: calc(11px * var(--scale));
+    line-height: normal;
+}
+
+/* 专业标签更小巧（加细边框与圆角） */
+.dept-chip {
+    height: calc(22px * var(--scale));
+    padding: 0 calc(10px * var(--scale));
+    font-size: calc(12px * var(--scale));
+    line-height: normal;
+    display: inline-block;
+    border: 1px solid #E2E8F0;
+    border-radius: calc(12px * var(--scale));
+    background-color: rgba(248, 250, 252, 0.60);
+}
+
+/* 数值列居中并小一号 */
+.value-cell {
+    text-align: center;
+    font-size: calc(12px * var(--scale));
+}
+
+/* 低调的前三名点缀：去掉粗体和重阴影 */
+.rank-badge.rank-1 {
+    background-color: rgba(239, 68, 68, 0.10);
+    color: #EF4444;
+    border-color: #FCA5A5;
+}
+
+.rank-badge.rank-2 {
+    background-color: rgba(184, 115, 51, 0.10); /* copper */
+    color: #B87333;
+    border-color: #E6B589;
+}
+
+.rank-badge.rank-3 {
+    background-color: rgba(212, 175, 55, 0.10); /* gold */
+    color: #D4AF37;
+    border-color: #F3E29B;
+}
+
+
+/* 右侧上下分区卡片在较小屏幕下保持视觉舒适（保持并排） */
+@media (max-width: 900px) {
+    .row.split-row {
+        flex-wrap: nowrap;
+    }
+
+    .split-row .left-col,
+    .split-row .right-col {
+        flex: 0 0 50%;
+        min-width: 0;
+    }
+}
+
+
+
+/* 左侧专业隐患表格美化（优化版） */
+.hazard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid transparent;
+    border-radius: calc(8px * var(--scale));
+    overflow: hidden;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+    font-family: "Segoe UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    font-size: calc(13px * var(--scale));
+    color: #334155;
+}
+
+.hazard-table thead th {
+    background-color: #F9FAFB;
+    color: #0F172A;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid #E2E8F0;
+    padding: calc(10px * var(--scale)) calc(14px * var(--scale));
+}
+
+.hazard-table th,
+.hazard-table td {
+    text-align: center;
+    padding: calc(9px * var(--scale)) calc(14px * var(--scale));
+}
+
+/* 保留行底线，去除列分隔线，视觉更轻盈 */
+.hazard-table tbody td {
+    border-bottom: 1px solid #E2E8F0;
+}
+.hazard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 斑马纹更柔和（不影响前三行的轻背景高亮） */
+.hazard-table tbody tr:not(.top-row):nth-child(odd) {
+    background-color: rgba(241, 245, 249, 0.18);
+}
+
+/* 悬停轻微高亮（比之前更克制） */
+.hazard-table tbody tr:hover {
+    background-color: rgba(148, 163, 184, 0.10);
+}
+
+/* 专业室标签在表格内的风格：随排行配色的边框，去掉填充背景 */
+.hazard-table .dept-chip {
+    display: inline-block;
+    border: 1px solid #E2E8F0;
+    border-radius: calc(12px * var(--scale));
+    padding: 0 calc(12px * var(--scale));
+    line-height: calc(22px * var(--scale));
+    background-color: transparent;
+}
+.hazard-table .dept-chip.rank-1 { border-color: #EF4444; }
+.hazard-table .dept-chip.rank-2 { border-color: #8B5E34; }
+.hazard-table .dept-chip.rank-3 { border-color: #B8860B; }
+
+/* 隐患数的数值排版更稳定 */
+.hazard-table .value-cell {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.hazard-table tbody tr {
+    transition: background-color .15s ease;
+}
+
+.hazard-table tbody tr:nth-child(odd) {
+    background-color: #FCFDFF;
+}
+
+
+/* 垂直卡片列表：专业隐患统计 */
+.hazard-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(10px * var(--scale));
+}
+
+.hazard-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: calc(12px * var(--scale));
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.hazard-card.top-card {
+    border-color: #C7D2FE;
+    /* 轻微强调 */
+    box-shadow: inset 0 2px 0 #3B82F6;
+}
+
+.hazard-card .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(24px * var(--scale));
+    height: calc(24px * var(--scale));
+    border-radius: 999px;
+    background: #F1F5F9;
+    color: #334155;
+    border: 1px solid #E2E8F0;
+    font-size: calc(12px * var(--scale));
+    line-height: 1;
+    margin-bottom: calc(8px * var(--scale));
+}
+
+.hazard-card .dept-name {
+    font-size: calc(13px * var(--scale));
+    color: #1F2937;
+    font-weight: 600;
+    margin-bottom: calc(6px * var(--scale));
+}
+
+.hazard-card .hazard-value {
+    display: flex;
+    align-items: baseline;
+    gap: calc(6px * var(--scale));
+}
+
+.hazard-card .hazard-value .value-num {
+    font-size: calc(16px * var(--scale));
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+    color: #111827;
+}
+
+.hazard-card .hazard-value .value-label {
+    font-size: calc(12px * var(--scale));
+    color: #6b7280d3;
+}
+
+/* 顶部区域与表格的间距协调 */
+#departmentHazardChart {
+    margin-top: calc(8px * var(--scale));
+}
+
+.data-table tbody tr:hover {
+    background-color: #F8FAFF;
+}
+
+/* 前三行轻量高亮（不影响居中） */
+.data-table tbody tr.top-row {
+    background-color: rgba(157, 190, 241, 0.164);
+}
+
+/* Top 3 字体颜色与排行一致（专业室 + 隐患数，柔和版） */
+.hazard-table .dept-chip.rank-1,
+.hazard-table .value-cell.rank-1 { color: #DC2626; } /* 深红，提升可读性 */
+.hazard-table .dept-chip.rank-2,
+.hazard-table .value-cell.rank-2 { color: #8B5E34; } /* 铜色更耐看 */
+.hazard-table .dept-chip.rank-3,
+.hazard-table .value-cell.rank-3 { color: #B8860B; } /* 暗金色，避免过亮 */
+
+/* 移除多余网格线，仅保留行底线 */
+.data-table tbody td {
+    border-bottom: 1px solid #f1f5f94b;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+
+
+/* 表头字体与内边距更紧凑 */
+.data-table thead th {
+    font-size: calc(12px * var(--scale));
+    padding: calc(8px * var(--scale)) calc(10px * var(--scale));
+}
+
+/* 内容区字体更紧凑 */
+.data-table tbody td {
+    font-size: calc(12px * var(--scale));
+}
+
+/* 行高更紧凑，保持等高 */
+.data-table tbody tr {
+    height: calc(30px * var(--scale));
+}
+
+/* 徽章更小巧 */
+.rank-badge {
+    min-width: calc(24px * var(--scale));
+    height: calc(20px * var(--scale));
+    padding: 0 calc(6px * var(--scale));
+    border-radius: calc(12px * var(--scale));
+    font-size: calc(11px * var(--scale));
+    line-height: normal;
+}
+
+/* 专业标签更小巧（加细边框与圆角） */
+.dept-chip {
+    height: calc(22px * var(--scale));
+    padding: 0 calc(10px * var(--scale));
+    font-size: calc(12px * var(--scale));
+    line-height: normal;
+    display: inline-block;
+    border: 1px solid #E2E8F0;
+    border-radius: calc(12px * var(--scale));
+    background-color: rgba(248, 250, 252, 0.60);
+}
+
+/* 数值列居中并小一号 */
+.value-cell {
+    text-align: center;
+    font-size: calc(12px * var(--scale));
+}
+
+/* 低调的前三名点缀：去掉粗体和重阴影 */
+.rank-badge.rank-1 {
+    background-color: rgba(239, 68, 68, 0.10);
+    color: #EF4444;
+    border-color: #FCA5A5;
+}
+
+.rank-badge.rank-2 {
+    background-color: rgba(184, 115, 51, 0.10); /* copper */
+    color: #B87333;
+    border-color: #E6B589;
+}
+
+.rank-badge.rank-3 {
+    background-color: rgba(212, 175, 55, 0.10); /* gold */
+    color: #D4AF37;
+    border-color: #F3E29B;
+}
+
+
+/* 右侧上下分区卡片在较小屏幕下保持视觉舒适（保持并排） */
+@media (max-width: 900px) {
+    .row.split-row {
+        flex-wrap: nowrap;
+    }
+
+    .split-row .left-col,
+    .split-row .right-col {
+        flex: 0 0 50%;
+        min-width: 0;
+    }
+}
+
+/* 排行榜样式：纵向列表，字段居中 */
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(10px * var(--scale));
+}
+
+.leaderboard-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: calc(12px * var(--scale));
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.leaderboard-item.top-item {
+    border-color: #BFDBFE;
+    box-shadow: inset 0 2px 0 #60A5FA;
+}
+
+.lb-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(26px * var(--scale));
+    height: calc(26px * var(--scale));
+    border-radius: 999px;
+    background: #F1F5F9;
+    color: #334155;
+    border: 1px solid #E2E8F0;
+    font-size: calc(12px * var(--scale));
+    line-height: 1;
+    margin-bottom: calc(8px * var(--scale));
+}
+
+.lb-name {
+    font-size: calc(13px * var(--scale));
+    color: #1F2937;
+    font-weight: 600;
+    margin-bottom: calc(8px * var(--scale));
+}
+
+.lb-value {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(6px * var(--scale));
+}
+
+.lb-bar {
+    width: min(520px, 90%);
+    height: calc(8px * var(--scale));
+    background: #EEF2F7;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lb-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #93C5FD, #3B82F6);
+}
+
+.lb-score {
+    font-size: calc(15px * var(--scale));
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: #111827;
+}
+
+/* 前三高亮的徽章色系（保持克制） */
+.lb-rank.rank-1 {
+    background-color: rgba(245, 158, 11, 0.12);
+    color: #B45309;
+    border-color: #FDE68A;
+}
+
+.lb-rank.rank-2 {
+    background-color: rgba(100, 116, 139, 0.12);
+    color: #334155;
+    border-color: #CBD5E1;
+}
+
+.lb-rank.rank-3 {
+    background-color: rgba(59, 130, 246, 0.12);
+    color: #1D4ED8;
+    border-color: #BFDBFE;
+}
+
+/* 分栏布局：左半专业隐患统计，右半上下各半 */
+.row.split-row {
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.split-row .left-col,
+.split-row .right-col {
+    flex: 0 0 50%;
+    display: flex;
+    min-width: 0;
+}
+
+/* 左列：保持卡片最小高度，撑开整列高度 */
+.split-row .left-col {
+    align-items: stretch;
+}
+
+.split-row .left-col .chart-container {
+    flex: 1;
+    min-height: calc(320px * var(--scale));
+    height: auto;
+}
+
+/* 右列：使用Grid上下均分，容器高度允许压缩 */
+.split-row .right-col {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: calc(20px * var(--scale));
+}
+
+.split-row .right-col .chart-container {
+    min-height: calc(280px * var(--scale));
+}
+
